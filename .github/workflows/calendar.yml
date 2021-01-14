@@ -1,0 +1,40 @@
+name: calendar-updater
+
+on:
+  schedule:
+    - cron: "22 */12 * * *"
+  workflow_dispatch: {}
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the Repo
+        uses: actions/checkout@v2
+
+      - name: Cache the workflow
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cache/pip
+            ./data
+            ./dist
+          key: calendar-updater-action-cache
+
+      - name: Install dependencies
+        run: pip3 install requests brotli
+
+      - name: update calendar
+        id: updater
+        run: python3 update.py
+        env:
+          API_PATH: ${{ secrets.API_PATH }}
+
+      - name: Deploy to Github-Pages
+        if: steps.updater.outputs.new_items > 0
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: dist
+          CLEAN: true
