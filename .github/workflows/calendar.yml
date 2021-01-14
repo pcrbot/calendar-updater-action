@@ -38,3 +38,6 @@ jobs:
           BRANCH: gh-pages
           FOLDER: dist
           CLEAN: true
+          GIT_CONFIG_NAME: pcrbot
+          GIT_CONFIG_EMAIL: pcrbot@users.noreply.github.com
+          COMMIT_MESSAGE: auto update
