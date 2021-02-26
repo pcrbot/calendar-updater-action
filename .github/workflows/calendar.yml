@@ -27,8 +27,6 @@ jobs:
       - name: update calendar
         id: updater
         run: python3 update.py
-        env:
-          API_PATH: ${{ secrets.API_PATH }}
 
       - name: Deploy to Github-Pages
         if: steps.updater.outputs.new_items > 0

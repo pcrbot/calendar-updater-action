@@ -15,8 +15,6 @@ if not os.path.exists(datadir):
 if not os.path.exists(distdir):
     os.makedirs(distdir)
 
-API_PATH = os.environ['API_PATH']
-
 
 def update(name, verurl, dburl):
     localver = os.path.join(datadir, os.path.basename(verurl))
@@ -98,10 +96,6 @@ def update(name, verurl, dburl):
     with open(os.path.join(distdir, name+'.json'), 'w') as j:
         json.dump(data, j, ensure_ascii=True, separators=(',', ':'))
         print('update success')
-    try:
-        requests.post(f'{API_PATH}?filename={name}.json', json=data)
-    except Exception as e:
-        print(f'::warning::error when uploading: {e}')
     return 1
 
 new_items = 0
