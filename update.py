@@ -104,8 +104,8 @@ print('updating database (cn)')
 try:
     new_items += update(
         'cn',
-        'https://redive.estertion.win/last_version_cn.json',
-        'https://redive.estertion.win/db/redive_cn.db.br',
+        'https://kkbllt.github.io/json/lastver_cn.json',
+        'https://kkbllt.github.io/br/redive_cn.db.br',
     )
 except Exception as e:
     print(e)
@@ -114,8 +114,8 @@ print('updating database (jp)')
 try:
     new_items += update(
         'jp',
-        'https://redive.estertion.win/last_version_jp.json',
-        'https://redive.estertion.win/db/redive_jp.db.br',
+        'https://kkbllt.github.io/json/lastver_jp.json',
+        'https://kkbllt.github.io/br/redive_jp.db.br',
     )
 except Exception as e:
     print(e)
@@ -126,6 +126,16 @@ try:
         'tw',
         'https://kkbllt.github.io/json/lastver_tw.json',
         'https://kkbllt.github.io/br/redive_tw.db.br',
+    )
+except Exception as e:
+    print(e)
+
+print('updating database (us)')
+try:
+    new_items += update(
+        'us',
+        'https://kkbllt.github.io/json/lastver_us.json',
+        'https://kkbllt.github.io/br/redive_us.db.br',
     )
 except Exception as e:
     print(e)
